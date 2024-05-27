@@ -1,7 +1,7 @@
 name: Create bimonthly l10n cleanup issue
 on:
   schedule:
-    - cron: "*/5 * * 5 1,2"
+    - cron: "*/5 * 28 5 *"
 
 jobs:
   create_issue:
@@ -15,6 +15,7 @@ jobs:
           if [[ $CLOSE_PREVIOUS == true ]]; then
             previous_issue_number=$(gh issue list \
               --label "$LABELS" \
+              --author "github-actions[bot]" \
               --json number \
               --jq '.[0].number')
             if [[ -n $previous_issue_number ]]; then
