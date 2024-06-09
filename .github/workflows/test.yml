@@ -10,7 +10,7 @@ jobs:
     permissions:
       issues: write
     steps:
-      - name: Close old and open new l10n cleanup issue
+      - name: Close old and open new issue
         run: |
           if [[ $CLOSE_PREVIOUS == true ]]; then
             previous_issue_number=$(gh issue list \
