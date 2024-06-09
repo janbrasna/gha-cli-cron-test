@@ -1,4 +1,4 @@
-name: Create bimonthly l10n cleanup issue
+name: Bimonthly l10n cleanup reminder
 on:
   schedule:
     - cron: 0 09 14 */2 *
@@ -10,7 +10,7 @@ jobs:
     permissions:
       issues: write
     steps:
-      - name: Close old and open new l10n cleanup issue
+      - name: Open new issue (and close old if needed)
         run: |
           if [[ $CLOSE_PREVIOUS == true ]]; then
             previous_issue_number=$(gh issue list \
@@ -39,8 +39,7 @@ jobs:
           LABELS: L10N
           BODY: |
             ### Remove obsolete strings
-            Search the code base for [strings marked `obsolete`](https://github.com/search?q=repo%3Amozilla%2Fbedrock+obsolete+language%3AFluent&type=code&l=Fluent) 
-            that are more than 2 months old.
+            Search the code base for [strings marked `obsolete`](https://github.com/search?q=repo%3Amozilla%2Fbedrock+obsolete+language%3AFluent&type=code&l=Fluent) that are more than 2 months old.
             If you find strings that have no date, either find the date by looking at git history
             or add an expiry date and leave it to be removed in 2 months.
             - [ ] Remove old obsolete strings
